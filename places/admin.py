@@ -26,7 +26,7 @@ class ImageAdmin(admin.ModelAdmin):
     fields = (
         'image',
         'preview',
-        'place',
+        'ordinal_number',
     )
     raw_id_fields = ['place',]
     readonly_fields = ["preview",]
