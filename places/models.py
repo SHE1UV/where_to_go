@@ -1,5 +1,7 @@
 from django.db import models
 
+from where_to_go.settings import MEDIA_URL
+
 
 class Place(models.Model):
     title = models.CharField('Название', max_length=200)
@@ -11,3 +13,7 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def get_absolute_image_url(self):
+        return '%s%s' % (MEDIA_URL, self.image.url)
