@@ -75,7 +75,6 @@ def import_place(json_path: str, url=False):
             },
         )
 
-
         if not created:
             return
         
