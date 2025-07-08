@@ -19,7 +19,7 @@ def show_main_page(request):
                 },
                 "properties": {
                     "title": place.title,
-                    "placeId": place.place_id,
+                    "placeId": place.id,
                     "detailsUrl": reverse(fetch_place_details, kwargs={'place_id': place.id})
                 }
             } for place in places]
