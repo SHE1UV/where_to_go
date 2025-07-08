@@ -16,7 +16,7 @@ def show_mainpage(request):
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [place.latitude, place.longitude]
+                "coordinates": [place.longitude, place.latitude]
             },
             "properties": {
                 "title": place.title,
