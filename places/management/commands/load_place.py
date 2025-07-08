@@ -65,7 +65,7 @@ def import_place(json_path: str, url=False):
             imported_place = json.load(file)
 
     try:
-        place, _ = Place.objects.get_or_create(
+        place, status = Place.objects.get_or_create(
             title=imported_place['title'],
             latitude=imported_place['coordinates']['lat'],
             longitude=imported_place['coordinates']['lng'],
@@ -75,20 +75,25 @@ def import_place(json_path: str, url=False):
             },
         )
 
-        for number, image_url in enumerate(imported_place['imgs'], start=1):
-            image_name = f'{imported_place["title"]}_{number}.jpg'
-            try:
-                fetch_image(place, image_url, image_name, number)
-            except (
-                    requests.exceptions.HTTPError,
-                    requests.exceptions.ReadTimeout,
-            ):
-                logging.exception(
-                    f"Не получилось загрузить {number} фотографию для {imported_place['title']}"
-                )
 
+        if status:
+            return
+        
     except MultipleObjectsReturned:
         logging.exception(f'Найдены дубликаты места {imported_place["title"]}')
+        return
+
+    for number, image_url in enumerate(imported_place['imgs'], start=1):
+        image_name = f'{imported_place["title"]}_{number}.jpg'
+        try:
+            fetch_image(place, image_url, image_name, number)
+        except (
+                requests.exceptions.HTTPError,
+                requests.exceptions.ReadTimeout,
+        ):
+            logging.exception(
+                f"Не получилось загрузить {number} фотографию для {imported_place['title']}"
+            )
 
 
 def fetch_image(place, image_url, image_name, number):
