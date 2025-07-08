@@ -49,5 +49,5 @@ def fetch_place_details(request, place_id):
             "lat": place.latitude,
         }
     }
-    response = JsonResponse(payload, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
-    return response
+    
+    return JsonResponse(payload, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 4})
