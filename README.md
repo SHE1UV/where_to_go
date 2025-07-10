@@ -52,6 +52,18 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
+### Для того, чтобы добавить новые места, используется скрипт *load_place.py*
+
+Способ применения:
+
+```bash
+python manage.py load_place --url [some_url] 
+```
+
+Предлагаемые к скрипту аргументы:
+* *--file* - для загрузки из json-файла
+* *--skip_imgs* -  не сохранять картинки
+
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
 
 Тестовые данные взяты с сайта [KudaGo](https://kudago.com).
