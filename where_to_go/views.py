@@ -18,18 +18,18 @@ def show_main_page(request):
             "properties": {
                 "title": place.title,
                 "placeId": place.id,
-                "detailsUrl": reverse('place_details', kwargs={'place_id': place.id})
+                "detailsUrl": reverse('place_details', kwargs={"place_id": place.id})
             }
         } for place in places
     ]
 
     context = {
-        'places': {
+        "places": {
             "type": "FeatureCollection",
              "features": features
         }
     }
-    return render(request, 'index.html', context)
+    return render(request, "index.html", context)
 
 
 def fetch_place_details(request, place_id):
@@ -50,4 +50,4 @@ def fetch_place_details(request, place_id):
         }
     }
 
-    return JsonResponse(payload, json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(payload, json_dumps_params={"ensure_ascii": False})
