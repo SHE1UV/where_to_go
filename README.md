@@ -57,12 +57,67 @@ python3 manage.py runserver
 Способ применения:
 
 ```bash
-python manage.py load_place --url [some_url] 
+python manage.py load_place [аргументы] 
 ```
 
-Предлагаемые к скрипту аргументы:
-* *--file* - для загрузки из json-файла
-* *--skip_imgs* -  не сохранять картинки
+Поддерживаемые аргументы:
+* *--url* или *-u*
+
+Импорт данных о месте по ссылке на JSON-файл.
+Пример:
+
+```bash
+python manage.py load_place --url https://example.com/place.json
+```
+
+* *--path* или *-p*
+
+Импорт данных о месте из локального JSON-файла.
+Пример:
+
+```bash
+python manage.py load_place --path ./data/place.json
+```
+
+* *--demo* или *-d*
+
+Импорт списка мест из demo JSON-файла, содержащего массив URL-адресов JSON-описаний мест.
+Пример:
+
+```bash
+python manage.py load_place --demo ./data/demo.json
+```
+
+###Примечания
+
+* JSON-файл должен содержать следующую структуру:
+
+```json
+{
+  "title": "Название места",
+  "description_short": "Краткое описание",
+  "description_long": "Полное описание",
+  "coordinates": {
+    "lat": 55.751244,
+    "lng": 37.618423
+  },
+  "imgs": [
+    "https://example.com/image1.jpg",
+    "https://example.com/image2.jpg"
+  ]
+}
+```
+
+* В случае с --demo JSON-файл должен быть в формате:
+
+```json
+{
+  "places": [
+    "https://example.com/place1.json",
+    "https://example.com/place2.json"
+  ]
+}
+```
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
 
