@@ -42,8 +42,8 @@ def fetch_place_details(request, place_id):
     payload = {
         "title": place.title,
         "imgs": images_urls,
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "short_description": place.short_description,
+        "long_description": place.long_description,
         "coordinates": {
             "lng": place.longitude,
             "lat": place.latitude,
