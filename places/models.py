@@ -9,18 +9,16 @@ class Place(models.Model):
     latitude = models.FloatField('Широта')
     longitude = models.FloatField('Долгота')
 
-    def __str__(self):
-        return self.title
-    
     class Meta:
         verbose_name = 'Место'
         verbose_name_plural = 'Места'
 
+    def __str__(self):
+        return self.title
+
 
 class Image(models.Model):
-    image = models.ImageField(
-        'Картинки',
-    )
+    image = models.ImageField('Картинки')
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
@@ -33,10 +31,10 @@ class Image(models.Model):
         db_index=True,
     )
 
-    def __str__(self):
-        return f'{self.ordinal_number} {self.place.title}'
-
     class Meta:
         verbose_name = 'Картинка'
         verbose_name_plural = 'Картинки'
         ordering = ['ordinal_number']
+
+    def __str__(self):
+        return f'{self.ordinal_number} {self.place.title}'
