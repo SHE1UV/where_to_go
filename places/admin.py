@@ -6,9 +6,15 @@ from adminsortable2.admin import SortableTabularInline, SortableAdminBase
 from .models import Place, Image
 
 
+PREVIEW_IMAGE_MAX_HEIGHT_PX = 200
+PREVIEW_IMAGE_MAX_WIDTH_PX = 300
+
+
 def preview(obj):
     return format_html(
         '<img src="{image_url}" style="max-height: 200px; max-width: 300px;">',
+        PREVIEW_IMAGE_MAX_HEIGHT_PX,
+        PREVIEW_IMAGE_MAX_WIDTH_PX,
         image_url=obj.image.url
     )
 
