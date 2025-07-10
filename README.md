@@ -21,7 +21,7 @@ Cайт о самых интересных местах в Москве.
 
 `SECRET_KEY` — ключ шифрования паролей пользователей сайта, его можно получуить следуюющим образом:
 
-```
+```bash
 python manage.py shell
 >>> from django.core.management.utils import get_random_secret_key
 >>> get_random_secret_key()
@@ -33,10 +33,24 @@ python manage.py shell
 ## Запуск
 Для работы требуется [python](https://www.python.org/) версии 3.10. 
 - Скачайте код
-- Установите зависимости командой `pip install -r requirements.txt`
-- Создайте файл базы данных и сразу примените все миграции командой `python3 manage.py migrate`
+- Установите зависимости командой:
+  
+```bash
+pip install -r requirements.txt
+```
+
+- Создайте файл базы данных и сразу примените все миграции командой:
+
+```bash
+python3 manage.py migrate
+```
+
 - Создайте и заполните переменные окружения
-- Запустите сервер командой `python3 manage.py runserver`
+- Запустите сервер командой:
+
+```bash
+python3 manage.py runserver
+```
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
 
