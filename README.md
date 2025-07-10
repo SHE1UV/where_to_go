@@ -88,7 +88,7 @@ python manage.py load_place --path ./data/place.json
 python manage.py load_place --demo ./data/demo.json
 ```
 
-###Примечания
+### Примечания
 
 * JSON-файл должен содержать следующую структуру:
 
