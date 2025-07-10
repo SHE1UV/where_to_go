@@ -12,7 +12,7 @@ PREVIEW_IMAGE_MAX_WIDTH_PX = 300
 
 def preview(obj):
     return format_html(
-        '<img src="{image_url}" style="max-height: 200px; max-width: 300px;">',
+        "<img src='{image_url}' style='max-height: 200px; max-width: 300px;'>",
         PREVIEW_IMAGE_MAX_HEIGHT_PX,
         PREVIEW_IMAGE_MAX_WIDTH_PX,
         image_url=obj.image.url
@@ -22,8 +22,8 @@ def preview(obj):
 class ImageInline(SortableTabularInline):
     model = Image
     fields = (
-        ('image', preview),
-        'ordinal_number'
+        ("image", preview),
+        "ordinal_number"
     )
     readonly_fields = [preview, ]
     extra = 0
@@ -31,7 +31,7 @@ class ImageInline(SortableTabularInline):
 
 @admin.register(Place)
 class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
-    search_fields = ('title', )
+    search_fields = ("title", )
     inlines = [ImageInline, ]
     
 
@@ -39,12 +39,12 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     fields = (
-        'image',
+        "image",
         preview,
-        'place',
-        'ordinal_number',
+        "place",
+        "ordinal_number",
     )
-    raw_id_fields = ['place', ]
+    raw_id_fields = ["place", ]
     readonly_fields = [preview, ]
  
     
