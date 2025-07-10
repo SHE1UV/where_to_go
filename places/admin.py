@@ -7,7 +7,10 @@ from .models import Place, Image
 
 
 def preview(obj):
-    return format_html('<img src="{image_url}" style="max-height: 200px;">', image_url=obj.image.url)
+    return format_html(
+        '<img src="{image_url}" style="max-height: 200px; max-width: 300px;">',
+        image_url=obj.image.url
+    )
 
 
 class ImageInline(SortableTabularInline):
