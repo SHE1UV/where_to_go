@@ -1,43 +1,15 @@
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render
-from places.models import Place
 from django.http import JsonResponse
-from django.urls import reverse
-
-
-def show_main_page(request):
-    places = Place.objects.all()
-
-    features = [
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [place.longitude, place.latitude]
-            },
-            "properties": {
-                "title": place.title,
-                "placeId": place.id,
-                "detailsUrl": reverse('place_details', kwargs={"place_id": place.id})
-            }
-        } for place in places
-    ]
-
-    context = {
-        "places": {
-            "type": "FeatureCollection",
-             "features": features
-        }
-    }
-    return render(request, "index.html", context)
+from places.models import Place
 
 
 def fetch_place_details(request, place_id):
-    place = get_object_or_404(Place, id=place_id)
-    images_urls = []
-    for image in place.images.all():
-        image_url = image.image.url
-        images_urls.append(image_url)
+    place = get_object_or_404(
+        Place.objects.prefetch_related("images"),
+        id=place_id
+    )
+
+    images_urls = [image.image.url for image in place.images.all()]
 
     payload = {
         "title": place.title,
