@@ -15,13 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY: str = env("SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG: bool = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-
+ALLOWED_HOSTS: List[str] = env.list("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -70,13 +69,15 @@ WSGI_APPLICATION = "where_to_go.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+DB_ENGINE: str = env("DB_ENGINE", "django.db.backends.sqlite3")
+DB_NAME: str = env("DB_NAME", "db.sqlite3")
+
 DATABASES = {
     "default": {
-        "ENGINE": env("DB_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.path.join(BASE_DIR, env("DB_NAME", "db.sqlite3")),
+        "ENGINE": DB_ENGINE,
+        "NAME": os.path.join(BASE_DIR, DB_NAME),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -118,7 +119,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, env("STATIC_ROOT", "assets"))
+STATIC_ROOT: str = os.path.join(BASE_DIR, env("STATIC_ROOT", "assets"))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
