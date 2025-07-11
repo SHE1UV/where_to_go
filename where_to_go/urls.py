@@ -3,13 +3,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from places import views
+from where_to_go.views import show_main_page
+from places.views import fetch_place_details 
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.show_main_page, name="main_page"),
-    path("places/<int:place_id>/", views.fetch_place_details, name="place_details"),
+    path("", show_main_page, name="main_page"),
+    path("places/<int:place_id>/", fetch_place_details, name="place_details"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
