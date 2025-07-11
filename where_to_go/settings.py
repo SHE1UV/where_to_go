@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from environs import Env
+from typing import List
 
 
 env = Env()
