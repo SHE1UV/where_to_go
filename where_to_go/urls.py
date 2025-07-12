@@ -3,8 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from where_to_go.views import show_main_page
-from places.views import fetch_place_details 
+from places.views import show_main_page, fetch_place_details
 
 
 urlpatterns = [
