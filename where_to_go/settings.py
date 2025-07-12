@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 from environs import Env
-from typing import List
 
 
 env = Env()
@@ -16,12 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY: str = env("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG: bool = env.bool("DEBUG", default=False)
+DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS: List[str] = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 # Application definition
 
 INSTALLED_APPS = [
@@ -69,8 +68,8 @@ WSGI_APPLICATION = "where_to_go.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DB_ENGINE: str = env("DB_ENGINE", "django.db.backends.sqlite3")
-DB_NAME: str = env("DB_NAME", "db.sqlite3")
+DB_ENGINE = env.str("DB_ENGINE", default="django.db.backends.sqlite3")
+DB_NAME = env.str("DB_NAME", default="db.sqlite3")
 
 DATABASES = {
     "default": {
@@ -119,7 +118,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATIC_ROOT: str = os.path.join(BASE_DIR, env("STATIC_ROOT", "assets"))
+STATIC_ROOT = os.path.join(BASE_DIR, env.str("STATIC_ROOT", default="assets"))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
