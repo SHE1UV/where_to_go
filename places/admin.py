@@ -12,10 +12,10 @@ PREVIEW_IMAGE_MAX_WIDTH_PX = 300
 
 def preview(obj):
     return format_html(
-        "<img src='{image_url}' style='max-height: 200px; max-width: 300px;'>",
-        image_url=obj.image.url,
-        height=PREVIEW_IMAGE_MAX_HEIGHT_PX,
-        width=PREVIEW_IMAGE_MAX_WIDTH_PX,
+        "<img src='{}' style='max-height:{}px; max-width:{}px;' />",
+        obj.image.url,
+        PREVIEW_IMAGE_MAX_HEIGHT_PX,
+        PREVIEW_IMAGE_MAX_WIDTH_PX
     )
 
 
@@ -35,7 +35,6 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [ImageInline, ]
     
 
-
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     fields = (
@@ -47,4 +46,3 @@ class ImageAdmin(admin.ModelAdmin):
     raw_id_fields = ["place", ]
     readonly_fields = [preview, ]
  
-    
